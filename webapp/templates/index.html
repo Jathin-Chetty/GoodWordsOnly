@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hate Word Detection</title>
+    <!-- Using Google Fonts: Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        <header class="header">
+            <h1>Multilingual Safety Analysis</h1>
+            <p>Classifies text into Appropriate, Inappropriate, Offensive, or Violent.</p>
+        </header>
+        
+        <main class="main-content">
+            <div class="input-section">
+                <textarea id="text-input" placeholder="Enter text to analyze..."></textarea>
+                <div class="controls">
+                    <button id="analyze-btn">Analyze Text</button>
+                    <span id="loader" class="loader hidden"></span>
+                </div>
+            </div>
+
+            <div id="result-container" class="result-container hidden">
+                <div class="result-header">
+                    <h2>Model Result</h2>
+                </div>
+                <div class="result-box">
+                    <div class="result-item">
+                        <span class="result-label">Top Class</span>
+                        <span id="prediction-badge" class="badge"></span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Top Score</span>
+                        <div class="progress-bar">
+                            <div id="confidence-fill" class="progress-fill"></div>
+                        </div>
+                        <span id="prediction-prob" class="prob-text"></span>
+                    </div>
+                    <div class="result-item block">
+                        <span class="result-label">All Class Scores</span>
+                        <div id="class-scores" class="class-scores"></div>
+                    </div>
+                    <div class="result-item model-item">
+                        <span class="result-label">Model</span>
+                        <span id="model-name" class="model-name"></span>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <p>&copy; Hate Word Detection Model Interface</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
