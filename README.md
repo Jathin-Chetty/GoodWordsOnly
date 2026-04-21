@@ -1,3 +1,11 @@
+---
+title: Hate Speech Multilingual
+emoji: 🤬
+colorFrom: red
+colorTo: yellow
+sdk: docker
+app_port: 7860
+---
 # Multilingual Hate Speech Detection
 
 A machine learning project for detecting hate speech in text using a fine-tuned DistilBERT multilingual model. The project includes training scripts, evaluation tools, and a web interface for real-time predictions.
