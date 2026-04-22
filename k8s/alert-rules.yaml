@@ -1,0 +1,27 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: hwd-app-rules
+  namespace: monitoring
+  labels:
+    release: prometheus # Needs to match prometheus operator label selector
+spec:
+  groups:
+  - name: hwd-app.rules
+    rules:
+    - alert: HighErrorRate
+      expr: rate(app_request_count{http_status=~"5.."}[5m]) > 0.05
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: High Error Rate detected
+        description: "The 5xx error rate is above 5% over the last 5 minutes."
+    - alert: PodDown
+      expr: up{service="hwd-app-service"} == 0
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: Pod is down
+        description: "The Prometheus target for hwd-app is unreachable."

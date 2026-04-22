@@ -5,3 +5,4 @@ flask
 pandas
 scikit-learn
 gunicorn
+prometheus-client

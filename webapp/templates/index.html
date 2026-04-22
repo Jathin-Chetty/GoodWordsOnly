@@ -3,25 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hate Word Detection</title>
-    <!-- Using Google Fonts: Outfit -->
+    <title>Signal Shield | Hate Speech Detection</title>
+    <!-- Retro + bold typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <button id="history-toggle-btn" class="history-toggle-btn" type="button" aria-expanded="false" aria-controls="history-panel">
+        View History
+    </button>
+
+    <aside id="history-panel" class="history-panel" aria-hidden="true">
+        <div class="history-header">
+            <h2>Recent Checks</h2>
+            <div class="history-actions">
+                <button id="refresh-history-btn" class="refresh-btn" type="button">Refresh</button>
+                <button id="close-history-btn" class="close-btn" type="button">Close</button>
+            </div>
+        </div>
+        <p class="history-caption">Stored safely in persistent volume.</p>
+        <div id="history-list" class="history-list">
+            <!-- History items will be injected here -->
+        </div>
+    </aside>
+    <div id="history-backdrop" class="history-backdrop hidden"></div>
+
     <div class="app-container">
         <header class="header">
-            <h1>Multilingual Safety Analysis</h1>
-            <p>Classifies text into Appropriate, Inappropriate, Offensive, or Violent.</p>
+            <p class="eyebrow">Realtime Language Safety Monitor</p>
+            <h1>Signal Shield</h1>
+            <p class="subtitle">
+                Detects hate speech, violent intent, and offensive language across multilingual inputs.
+                Built for moderation teams who need fast and explainable decisions.
+            </p>
         </header>
         
         <main class="main-content">
+            <section class="context-card">
+                <h2>Why this matters</h2>
+                <p>
+                    Harmful speech spreads faster than human moderation can handle. This tool gives an early warning signal,
+                    helping reviewers prioritize dangerous content and protect vulnerable communities.
+                </p>
+            </section>
+
             <div class="input-section">
-                <textarea id="text-input" placeholder="Enter text to analyze..."></textarea>
+                <label for="text-input" class="input-label">Paste text for analysis</label>
+                <textarea id="text-input" placeholder="Example: I hate all of you..."></textarea>
                 <div class="controls">
-                    <button id="analyze-btn">Analyze Text</button>
+                    <button id="analyze-btn">Run Safety Scan</button>
                     <span id="loader" class="loader hidden"></span>
                 </div>
             </div>
@@ -53,9 +85,9 @@
                 </div>
             </div>
         </main>
-        
+
         <footer class="footer">
-            <p>&copy; Hate Word Detection Model Interface</p>
+            <p>Each prediction supports human judgement, not replaces it.</p>
         </footer>
     </div>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
